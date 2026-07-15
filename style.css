@@ -1,3 +1,4 @@
 #canvas {
     background-image: url("images/sky.jpeg");
+    background-size: cover;
 }
