@@ -1,4 +1,6 @@
 #canvas {
     background-image: url("images/sky.jpeg");
     background-size: cover;
+    margin: 0;
+    overflow: hidden;
 }
