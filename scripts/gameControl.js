@@ -1,3 +1,5 @@
+import { graphics } from "./graphics.js"
+
 //Game control object
 const gameControl = {
     //Delta time
