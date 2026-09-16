@@ -1,0 +1,31 @@
+name: Deploy main site
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+concurrency:
+    group: pages-main
+    cancel-in-progress: false
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+
+            - name: Deploy main site
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                  folder: .
+                  branch: gh-pages
+                  clean: true
+                  clean-exclude: |
+                      branches/
+                  force: false

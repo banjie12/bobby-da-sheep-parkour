@@ -1,0 +1,38 @@
+name: Deploy branch preview
+
+on:
+    push:
+        branches-ignore:
+            - main
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+concurrency:
+    group: pages-branch-${{ github.ref_name }}
+    cancel-in-progress: false
+
+jobs:
+    deploy-preview:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v5
+
+            - name: Create safe branch name
+              id: branch
+              shell: bash
+              run: |
+                  BRANCH="${GITHUB_REF_NAME}"
+                  SAFE_BRANCH=$(echo "$BRANCH" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._-]/-/g')
+                  echo "name=$SAFE_BRANCH" >> "$GITHUB_OUTPUT"
+
+            - name: Deploy branch preview
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                  folder: .
+                  branch: gh-pages
+                  target-folder: branches/${{ steps.branch.outputs.name }}
+                  clean: false
+                  force: false
