@@ -1,3 +1,5 @@
+import { graphics } from "./graphics.js";
+
 //Ticking object
 export const ticking = {
     //Last time, original time and delta time variables
