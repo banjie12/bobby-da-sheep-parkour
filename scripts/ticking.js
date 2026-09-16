@@ -22,6 +22,7 @@ export const ticking = {
         }
 
         //Run graphics tick
+        graphics.tick();
 
         //Loop
         requestAnimationFrame(this.attemptTick.bind(this));
