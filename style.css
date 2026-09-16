@@ -4,5 +4,5 @@ body {
 }
 
 #gameCanvas {
-    background-image: url(images/background.png);
+    background-image: url("images/background.png");
 }
