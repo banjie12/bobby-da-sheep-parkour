@@ -1,3 +1,3 @@
-const ticking = {
+export const ticking = {
     
 };
